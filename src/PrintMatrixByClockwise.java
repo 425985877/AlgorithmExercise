@@ -17,27 +17,31 @@ public class PrintMatrixByClockwise {
         if(colunms<=0 | rows <=0){
             return list;
         }
-        while (colunms>=start *2 && rows>= start*2){
-            printCircle(list,start,matrix,colunms-1-start,rows-1-start);
+        while (colunms> start *2 && rows> start*2){
+            printCircle(list,start,matrix,colunms-1,rows-1);
             start++;
         }
         return list;
     }
     public void printCircle(ArrayList<Integer> list ,int start,int [][] matrix,int colunmend,int rowend) {
-        for(int i=start;i<=colunmend;i++){
+        int i =0;
+        for(i=start;i<colunmend;i++){
             list.add(matrix[start][i]);
         }
-        if(rowend>start){
-            for (int i=start+1;i<=rowend;i++){
-                list.add(matrix[colunmend][i]);
-            }
-            for (int i=colunmend-1;i>=start;i--){
-                list.add(matrix[i][rowend]);
-            }
-            for(int i=rowend-1;i>start;i--){
-                list.add(matrix[start][i]);
+        if(rowend>start && i==colunmend){
+            for (i=start;i<rowend;i++){
+                list.add(matrix[i][colunmend]);
             }
         }
+        if(colunmend>start && i==rowend){
+            for (i=colunmend;i>start;i--){
+                list.add(matrix[rowend][i]);
+            }
+            for (i=rowend;i>start;i--){
+                list.add(matrix[i][start]);
+            }
+        }
+
 
 
     }
